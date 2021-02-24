@@ -11,5 +11,8 @@
     kubernetes==12.0.0
     
 安装方式:
+
+    拉取源码到本地
+    1.git clone https://github.com/SK2-Angel/alkssh.git
     
-    1.
+    
