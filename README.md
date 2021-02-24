@@ -1,4 +1,4 @@
-# alkssh
+# ALKSSH
 简介：
 
     是一款集成了前端页面，网页终端，后端kubernetes接口的webssh的开源组件
