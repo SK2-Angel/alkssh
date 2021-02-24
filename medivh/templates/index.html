@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pod Web SSH</title>
+  <link href="{% static 'xterm.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'fullscreen.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+  <div id="terminal"></div>
+</body>
+
+<script src="{% static 'xterm.js' %}"></script>
+<script src="{% static 'fullscreen.js' %}"></script>
+<script src="{% static 'fit.js' %}"></script>
+<script>
+  var url = document.URL;
+  var url_temp = url.split('/')
+  var ip = url.split('/')[2]
+  var pod_name = url.split('/')[4]
+  var namespace_pod = url.split('/')[5]
+  var rows = window.innerHeight
+  var cols = window.innerWidth
+  var cols_s = parseInt(cols/9.1)
+  var rows_s = parseInt(rows/17.4)
+  var term = new Terminal({cursorBlink: true,rows: rows_s,cols: cols_s,windowsMode: true,});
+  term.open(document.getElementById('terminal'));
+  // xterm fullscreen config
+  Terminal.applyAddon(fullscreen);
+  term.toggleFullScreen(true);
+  //Terminal.applyAddon(fit);
+ // term.fit();
+  var socket = new WebSocket(
+    'ws://'+ ip + '/pod/'+ rows_s + '/' + cols_s + '/' + pod_name + '/' + namespace_pod)
+  socket.addEventListener('error', function (event) {
+     alert("错误,远程连接pod出错,请检查是否拥有连接权限或容器名称是否一致,再尝试连接!!");
+     window.opener=null;window.top.open('','_self','');window.close(this);
+  });
+  socket.onopen = function () {
+    term.on('data', function (data) {
+        socket.send(data);
+    });
+    socket.onerror = function (event) {
+      console.log('error:' + e);
+    };
+    socket.onmessage = function (event) {
+      term.write(event.data);
+    };
+
+    socket.onclose = function (event) {
+      term.write('\n\r\x1B[1;3;31msocket is already closed.\x1B[0m');
+      // term.destroy();
+    };
+  };
+</script>
+</html>
