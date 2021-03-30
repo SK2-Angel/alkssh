@@ -2,7 +2,7 @@
 <h3>简介</h3>
 
   一个集成了终端页面,后端整条kubernetes调动的组件,可以实现pod在web页面的连接,方便各位大佬的使用,二次开发和集成项目,通过url的方式识别和连接pod容器,不需要侵入到k8s环境中,可在kubernetes外部部署使用,
- <h3>博客连接:</h3> https://blog.csdn.net/qq_42647772/article/details/111663376
+
 <h3>演示</h3>
 
 ![image](https://img-blog.csdnimg.cn/20201224183506387.gif#pic_center)
@@ -60,7 +60,7 @@
 <h3>结尾</h3>
   
   此开源组件除了docker也可部署在宿主机和kubernetes中，后续会更新kubernetes的部署方法，如果有任何疑问或者发现了BUG，可以提交问题，我看到第一时间会回复，运维开发是将来的发展趋势，自动化运维已经满足不了部分需求，谢谢大家的支持！！
-  
+<h3>博客连接:</h3> https://blog.csdn.net/qq_42647772/article/details/111663376
   
   
   
