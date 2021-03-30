@@ -2,7 +2,7 @@
 <h3>简介</h3>
 
   一个集成了终端页面,后端整条kubernetes调动的组件,可以实现pod在web页面的连接,方便各位大佬的使用,二次开发和集成项目,通过url的方式识别和连接pod容器,不需要侵入到k8s环境中,可在kubernetes外部部署使用,
-    
+ <h3>博客连接:</h3> https://blog.csdn.net/qq_42647772/article/details/111663376
 <h3>演示</h3>
 
 ![image](https://img-blog.csdnimg.cn/20201224183506387.gif#pic_center)
