@@ -5,7 +5,7 @@
     
 演示图片:
 
-![image](https://user-images.githubusercontent.com/49671782/112960034-9ceedb80-9176-11eb-8c3b-4a900d1eb268.png)
+![image](https://img-blog.csdnimg.cn/20201224183506387.gif#pic_center)
   
 环境说明:
 
