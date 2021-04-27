@@ -38,7 +38,7 @@
 <h3>容器化部署</h3>
       
      利用docker启动组件
-     docker run -v -d /root/kubernetes.yaml:/root/kubernetes.yaml -p 3578:3578 --add-host apiserver.cluster.local:172.3.59.166 czl1041484348/alkssh:v1
+     docker run -d -v /root/kubernetes.yaml:/root/kubernetes.yaml -p 3578:3578 --add-host apiserver.cluster.local:172.3.59.166 czl1041484348/alkssh:v1
      
      说明:
           /root/kubernetes.yaml: kubernetes的认证文件,组件需要获取kubernetes权限,用来调用api和数据传输。
