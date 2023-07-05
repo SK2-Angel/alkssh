@@ -23,11 +23,22 @@ class K8SStreamThread(Thread):
 class SSHConsumer(WebsocketConsumer):
     def connect(self):
         path = self.scope.get('path')
-        self.name = path.split('/')[-1]
-        self.namespace_pod = path.split('/')[-2]
-        self.cols_s = path.split('/')[-3]
-        self.rows_s = path.split('/')[-4]
-        self.stream = KubeApi().pod_exec(self.name,self.namespace_pod,self.rows_s,self.cols_s)
+        #hard code the name of container
+        if ':' in path:
+            self.container = path.split(':')[-1]
+            self.name = path.split('/')[-1].split(':')[0]
+            self.namespace_pod = path.split('/')[-2]
+            self.cols_s = path.split('/')[-3]
+            self.rows_s = path.split('/')[-4]
+            self.stream = KubeApi().pod_exec(self.name,self.namespace_pod,self.rows_s,self.cols_s,self.container)
+        else:
+            self.container = ""
+            self.name = path.split('/')[-1]
+            self.namespace_pod = path.split('/')[-2]
+            self.cols_s = path.split('/')[-3]
+            self.rows_s = path.split('/')[-4]
+            self.stream = KubeApi().pod_exec(self.name,self.namespace_pod,self.rows_s,self.cols_s)
+
         kub_stream = K8SStreamThread(self, self.stream)
         kub_stream.start()
         self.accept()
@@ -37,3 +48,4 @@ class SSHConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         self.stream.write_stdin(text_data)
+

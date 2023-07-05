@@ -46,11 +46,22 @@
           –add-host apiserver.cluster.local:172.3.59.166: 这参数是添加一个hosts到容器中,这里是因为作者的kube-apiserver是通过名称进行访问的,所以要加一个hosts否则无法解析地址,根据个人的需求进行改变。
 
 <h3>访问方式</h3>
+    如果pod中只有一个container
     http://部署此组件的机器地址加端口号/index/namespace命名空间/pod的名称
+    或
+    http://部署此组件的机器地址加端口号/index/namespace命名空间/pod的名称:容器的名称
     
     例如:
     
      http://225.145.56.221:3578/index/alkssh/nginx-alktest-5bfb49576d-875f9
+     或
+     http://225.145.56.221:3578/index/alkssh/nginx-alktest-5bfb49576d-875f9:nginx
+
+     如果pod中有多个container
+     http://部署此组件的机器地址加端口号/index/namespace命名空间/pod的名称:容器的名称
+
+     例如：
+     http://225.145.56.221:3578/index/alkssh/nginx-alktest-5bfb49576d-875f9:nginx
 
 <h3>API集成方法</h3>
 
